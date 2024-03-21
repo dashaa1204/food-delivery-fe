@@ -1,18 +1,26 @@
-import { AppBar, Box, Stack, TextField, Toolbar } from "@mui/material";
+import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import MainLogo from "./icons/MainLogo";
 import SearchIcon from "./icons/SearchIcon";
+import CartIcon from "./icons/CartIcon";
+import SigninIcon from "./icons/SigninIcon";
 
 const pages = ["НҮҮР", "ХООЛНЫ ЦЭС", "ХҮРГЭЛТИЙН БҮС"];
 
 const Header = () => {
   return (
-    <AppBar position="static">
+    <AppBar
+      sx={{
+        backgroundColor: "white",
+        color: "black",
+        boxShadow: "none",
+      }}
+    >
       <Container maxWidth="xl">
         <Stack
           p={2}
           justifyContent={"space-between"}
-          alignItems={"flex-start"}
+          alignItems={"center"}
           direction={"row"}
         >
           <Toolbar>
@@ -25,13 +33,37 @@ const Header = () => {
               </Stack>
             </Stack>
           </Toolbar>
-          <Stack direction={"row"} alignItems={"center"}>
-            <SearchIcon />
-            <TextField
-              variant="outlined"
-              label={"Хайх"}
-              inputMode="search"
-            ></TextField>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            bgcolor={"white"}
+            borderRadius={"8px"}
+            width={228}
+            px={"16px"}
+            py={"4px"}
+            gap={2}
+          >
+            <Stack
+              direction={"row"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={1}
+              border={1}
+              borderRadius={"10px"}
+              px={3}
+              py={1}
+            >
+              <SearchIcon />
+              <Box border={"none"} component={"input"} placeholder="Хайх"></Box>
+            </Stack>
+            <Stack direction={"row"} alignItems={"center"} px={2} gap={1}>
+              <CartIcon />
+              <Typography>Сагс</Typography>
+            </Stack>
+            <Stack direction={"row"} alignItems={"center"} px={2} gap={1}>
+              <SigninIcon />
+              <Typography>Нэвтрэх</Typography>
+            </Stack>
           </Stack>
         </Stack>
       </Container>
