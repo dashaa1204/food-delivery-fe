@@ -1,11 +1,10 @@
 import { Stack } from "@mui/material";
 import Footer from "./Footer";
 import Header from "./Header";
-import Box from "@mui/material/Box";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box>
+    <Stack>
       <Header />
       <main>
         <Stack justifyContent={"center"} alignItems={"center"}>
@@ -13,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </Stack>
       </main>
       <Footer />
-    </Box>
+    </Stack>
   );
 };
 

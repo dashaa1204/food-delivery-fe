@@ -9,19 +9,14 @@ const pages = ["НҮҮР", "ХООЛНЫ ЦЭС", "ХҮРГЭЛТИЙН БҮС"]
 
 const Header = () => {
   return (
-    <AppBar
-      sx={{
-        backgroundColor: "white",
-        color: "black",
-        boxShadow: "none",
-      }}
-    >
-      <Container maxWidth="xl">
+    <AppBar sx={{ bgcolor: "white", boxShadow: "none" }}>
+      <Container maxWidth={"xl"}>
         <Stack
           p={2}
           justifyContent={"space-between"}
           alignItems={"center"}
           direction={"row"}
+          width={"100%"}
         >
           <Toolbar>
             <Stack direction={"row"} spacing={4}>
@@ -38,7 +33,6 @@ const Header = () => {
             alignItems={"center"}
             bgcolor={"white"}
             borderRadius={"8px"}
-            width={228}
             px={"16px"}
             py={"4px"}
             gap={2}

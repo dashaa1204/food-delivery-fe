@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import { Instagram, Twitter } from "@mui/icons-material";
+import Pattern from "./icons/Pattern";
 
 const Footer = () => {
   return (
@@ -13,7 +14,11 @@ const Footer = () => {
       alignItems={"center"}
       bgcolor={"#18BA51"}
       color={"white"}
+      position={"relative"}
     >
+      <Box position={"absolute"}>
+        <Pattern />
+      </Box>
       <Stack
         alignItems={"center"}
         gap={"40px"}
