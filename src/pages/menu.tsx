@@ -1,5 +1,4 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-const category = ["Breakfast", "Soup", "Main Course", "Dessert"];
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
