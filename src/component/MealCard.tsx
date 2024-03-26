@@ -1,19 +1,20 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-type Menu = { img: string; title: string; price: number };
-type Meals = { title: string; menu: Menu[] };
+type Menu = { img: string; stitle: string; price: number };
 
-const MealCard = (
-  { img }: { img: string },
-  { title }: { title: string },
-  { price }: { price: number }
-) => {
+const MealCard = ({ menu }: { menu: Menu }) => {
   return (
-    <Stack spacing={"14px"}>
-      <Typography>{img}</Typography>
+    <Stack spacing={6} margin={0}>
+      <Box
+        component={"img"}
+        src={menu.img}
+        width={"282px"}
+        height={"186px"}
+        borderRadius={"16px"}
+      ></Box>
       <Stack width={"282px"} spacing={"2px"}>
-        <Typography>{title}</Typography>
-        <Typography>{price}</Typography>
+        <Typography>{menu.stitle}</Typography>
+        <Typography>{menu.price}</Typography>
       </Stack>
     </Stack>
   );
