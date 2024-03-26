@@ -2,6 +2,8 @@ import { Box, Stack, Typography, useTheme } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
+import { meals } from "../utils/dummy-data";
+import MealCard from "@/component/MealCard";
 
 const CustomTabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -44,25 +46,71 @@ const Menu = () => {
           width={theme.breakpoints.values.lg}
           height={"43px"}
           spacing={"26px"}
-          mb={40}
+          mb={200}
         >
           <Tabs
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="Breakfast" {...a11yProps(0)} />
+            <Tab label="Soup" {...a11yProps(1)} />
+            <Tab label="Main Course" {...a11yProps(2)} />
+            <Tab label="Dessert" {...a11yProps(2)} />
           </Tabs>
           <CustomTabPanel value={value} index={0}>
-            Item One
+            <Stack
+              width={theme.breakpoints.values.xl}
+              spacing={"60px"}
+              gridRow={4}
+              gridColumn={3}
+            >
+              {meals.map((a) => {
+                return (
+                  <Stack spacing={3} direction={"row"}>
+                    {meals.map((a, index) => {
+                      return <MealCard menu={a.menu[0]} key={index} />;
+                    })}
+                  </Stack>
+                );
+              })}
+            </Stack>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            Item Two
+            <Stack
+              width={theme.breakpoints.values.xl}
+              spacing={"60px"}
+              gridRow={4}
+              gridColumn={3}
+            >
+              {meals.map((a) => {
+                return (
+                  <Stack spacing={3} direction={"row"}>
+                    {meals.map((a, index) => {
+                      return <MealCard menu={a.menu[0]} key={index} />;
+                    })}
+                  </Stack>
+                );
+              })}
+            </Stack>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            Item Three
+            <Stack
+              width={theme.breakpoints.values.xl}
+              spacing={"60px"}
+              gridRow={4}
+              gridColumn={3}
+            >
+              {meals.map((a) => {
+                return (
+                  <Stack spacing={3} direction={"row"}>
+                    {meals.map((a, index) => {
+                      return <MealCard menu={a.menu[0]} key={index} />;
+                    })}
+                  </Stack>
+                );
+              })}
+            </Stack>
           </CustomTabPanel>
         </Stack>
       </Stack>
