@@ -1,18 +1,60 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { NumericFormat, NumericFormatProps } from "react-number-format";
+
+interface CustomProps {
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
+}
+
+const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumericFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        valueIsNumericString
+        suffix="₮"
+      />
+    );
+  }
+);
 
 const SaleCard = ({
   img,
   title,
   price,
-  finalPrice,
   sale,
 }: {
   img: string;
   title: string;
   price: number;
-  finalPrice: number;
   sale: number;
 }) => {
+  const [values, setValues] = useState({
+    numberformat: price - (sale * price) / 100,
+  });
+  const [mainValues, setmainValues] = useState({
+    numberformat: price,
+  });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <Stack spacing={6} margin={0}>
       <Stack position={"relative"}>
@@ -44,10 +86,39 @@ const SaleCard = ({
       </Stack>
 
       <Stack width={"282px"} spacing={"2px"}>
-        <Typography>{title}</Typography>
-        <Stack direction={"row"}>
-          <Typography>{price - (sale * price) / 100}₮</Typography>
-          <Typography>{price}₮</Typography>
+        <Typography fontSize={"18px"} fontWeight={600}>
+          {title}
+        </Typography>
+        <Stack direction={"row"} spacing={2}>
+          <TextField
+            value={values.numberformat}
+            onChange={handleChange}
+            name="numberformat"
+            id="formatted-numberformat-input"
+            InputProps={{
+              inputComponent: NumericFormatCustom as any,
+              disableUnderline: true,
+              style: { color: "#18BA51", fontSize: "18px", fontWeight: 600 },
+            }}
+            variant="standard"
+          />
+
+          <TextField
+            value={mainValues.numberformat}
+            onChange={handleChange}
+            name="numberformat"
+            id="formatted-numberformat-input"
+            InputProps={{
+              inputComponent: NumericFormatCustom as any,
+              disableUnderline: true,
+              style: {
+                fontSize: "18px",
+                fontWeight: 400,
+                textDecoration: "line-through",
+              },
+            }}
+            variant="standard"
+          />
         </Stack>
       </Stack>
     </Stack>

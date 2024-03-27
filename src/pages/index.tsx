@@ -2,14 +2,20 @@ import { Stack, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
-import Meals from "@/component/Meals";
+import Meals from "@/component/MealCardRow";
 import { meals, controlCardsData } from "../utils/dummy-data";
 import dummyFoods from "@/dummyFoods.json";
 import SaleCard from "@/component/SaleCardRow";
 import SaleCardRow from "@/component/SaleCardRow";
+import MealCardRow from "@/component/MealCardRow";
+
+const menus = ["Main Dish", "Salads and Appetizers", "Breakfast", "Dessert"];
 
 const Home = () => {
   const theme = useTheme();
+  const data = dummyFoods.filter((val) => {
+    return val.sale == 0;
+  });
   return (
     <Stack width={theme.breakpoints.values.xl} alignItems={"center"}>
       <Stack
@@ -95,6 +101,9 @@ const Home = () => {
         })}
       </Stack>
       <SaleCardRow />
+      {menus.map((a) => {
+        return <MealCardRow title={a} />;
+      })}
     </Stack>
   );
 };
