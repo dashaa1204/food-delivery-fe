@@ -1,12 +1,13 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
-import { meals } from "../utils/dummy-data";
-import MealCard from "./MealCard";
+import SaleCard from "./SaleCard";
+import dummyFoods from "@/dummyFoods.json";
 
-type Menu = { img: string; stitle: string; price: number };
-type Meals = { title: string; menu: Menu[] };
-
-const Meals = ({ title }: { title: string }) => {
+const SaleCardRow = () => {
   const theme = useTheme();
+  const data = dummyFoods.filter((val) => {
+    return val.sale > 0;
+  });
+
   return (
     <Stack
       width={theme.breakpoints.values.xl}
@@ -33,7 +34,7 @@ const Meals = ({ title }: { title: string }) => {
               fill="#18BA51"
             />
           </svg>
-          <Typography>{title}</Typography>
+          <Typography>Хямдралтай</Typography>
         </Stack>
         <Stack direction={"row"} spacing={"5px"} alignItems={"center"}>
           <Button>
@@ -54,13 +55,19 @@ const Meals = ({ title }: { title: string }) => {
         </Stack>
       </Stack>
       <Stack spacing={3} direction={"row"}>
-        <MealCard />
-        {meals.map((a, index) => {
-          return <MealCard menu={a.menu[0]} key={index} />;
+        {data.slice(0, 4).map((a) => {
+          return (
+            <SaleCard
+              img={a.imagePath}
+              title={a.foodName}
+              sale={a.sale}
+              price={a.price}
+            />
+          );
         })}
       </Stack>
     </Stack>
   );
 };
 
-export default Meals;
+export default SaleCardRow;

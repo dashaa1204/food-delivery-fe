@@ -4,10 +4,12 @@ import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
 import Meals from "@/component/Meals";
 import { meals, controlCardsData } from "../utils/dummy-data";
+import dummyFoods from "@/dummyFoods.json";
+import SaleCard from "@/component/SaleCardRow";
+import SaleCardRow from "@/component/SaleCardRow";
 
 const Home = () => {
   const theme = useTheme();
-
   return (
     <Stack width={theme.breakpoints.values.xl} alignItems={"center"}>
       <Stack
@@ -92,11 +94,7 @@ const Home = () => {
           );
         })}
       </Stack>
-      <Stack spacing={20} mb={"84px"}>
-        {meals.map((a, key) => {
-          return <Meals title={a.title} img={a.menu.img} key={key} />;
-        })}
-      </Stack>
+      <SaleCardRow />
     </Stack>
   );
 };

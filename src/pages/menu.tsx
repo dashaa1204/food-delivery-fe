@@ -65,9 +65,9 @@ const Menu = () => {
               gridRow={4}
               gridColumn={3}
             >
-              {meals.map((a) => {
+              {meals.map((a, key) => {
                 return (
-                  <Stack spacing={3} direction={"row"}>
+                  <Stack spacing={3} direction={"row"} key={key}>
                     {meals.map((a, index) => {
                       return <MealCard menu={a.menu[0]} key={index} />;
                     })}
@@ -83,9 +83,9 @@ const Menu = () => {
               gridRow={4}
               gridColumn={3}
             >
-              {meals.map((a) => {
+              {meals.map((a, key) => {
                 return (
-                  <Stack spacing={3} direction={"row"}>
+                  <Stack spacing={3} direction={"row"} key={key}>
                     {meals.map((a, index) => {
                       return <MealCard menu={a.menu[0]} key={index} />;
                     })}
@@ -101,9 +101,9 @@ const Menu = () => {
               gridRow={4}
               gridColumn={3}
             >
-              {meals.map((a) => {
+              {meals.map((a, key) => {
                 return (
-                  <Stack spacing={3} direction={"row"}>
+                  <Stack spacing={3} direction={"row"} key={key}>
                     {meals.map((a, index) => {
                       return <MealCard menu={a.menu[0]} key={index} />;
                     })}
