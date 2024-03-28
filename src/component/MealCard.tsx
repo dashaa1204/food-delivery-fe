@@ -1,4 +1,4 @@
-import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Box, Modal, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { NumericFormat, NumericFormatProps } from "react-number-format";
 
@@ -31,6 +31,18 @@ const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
   }
 );
 
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const MealCard = ({
   img,
   title,
@@ -39,7 +51,6 @@ const MealCard = ({
   img: string;
   title: string;
   price: number;
-  sale: number;
 }) => {
   const [mainValues, setMainValues] = useState({
     numberformat: price,
@@ -51,8 +62,16 @@ const MealCard = ({
     });
   };
 
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(!open);
+
   return (
-    <Stack spacing={6} margin={0}>
+    <Stack
+      sx={{ marginLeft: 2 }}
+      onClick={() => {
+        setOpen(!open);
+      }}
+    >
       <Stack position={"relative"}>
         <Box
           component={"img"}
@@ -82,6 +101,21 @@ const MealCard = ({
           />
         </Stack>
       </Stack>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
     </Stack>
   );
 };

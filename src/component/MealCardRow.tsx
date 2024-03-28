@@ -1,5 +1,4 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
-import SaleCard from "./SaleCard";
 import dummyFoods from "@/dummyFoods.json";
 import MealCard from "./MealCard";
 
@@ -56,13 +55,13 @@ const MealCardRow = ({ title }: { title: string }) => {
         </Stack>
       </Stack>
       <Stack spacing={3} direction={"row"}>
-        {data.slice(0, 4).map((a) => {
+        {data.slice(0, 4).map((a, index) => {
           return (
             <MealCard
               img={a.imagePath}
               title={a.foodName}
-              sale={a.sale}
               price={a.price}
+              key={index}
             />
           );
         })}

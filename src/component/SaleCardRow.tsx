@@ -55,13 +55,14 @@ const SaleCardRow = () => {
         </Stack>
       </Stack>
       <Stack spacing={3} direction={"row"}>
-        {data.slice(0, 4).map((a) => {
+        {data.slice(0, 4).map((a, index) => {
           return (
             <SaleCard
               img={a.imagePath}
               title={a.foodName}
               sale={a.sale}
               price={a.price}
+              key={index}
             />
           );
         })}

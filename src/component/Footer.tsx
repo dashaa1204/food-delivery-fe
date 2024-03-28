@@ -9,7 +9,6 @@ const Footer = () => {
     <Stack
       width={"100%"}
       height={"545px"}
-      flexShrink={0}
       justifyContent={"center"}
       alignItems={"center"}
       bgcolor={"#18BA51"}
