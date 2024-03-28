@@ -4,12 +4,33 @@ import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
 import { controlCardsData } from "../utils/dummy-data";
 import SaleCardRow from "@/component/SaleCardRow";
-import MealCardRow from "@/component/MealCardRow";
+import React from "react";
+import dummyFoods from "@/dummyFoods.json";
 
-const menus = ["Main Dish", "Salads and Appetizers", "Breakfast", "Dessert"];
+const breakfast = dummyFoods.filter((val) => {
+  return val.category === "Breakfast" && val.sale == 0;
+});
+
+const salads = dummyFoods.filter((val) => {
+  return val.category === "Salads and Appetizers" && val.sale == 0;
+});
+
+const main = dummyFoods.filter((val) => {
+  return val.category === "Main Dish" && val.sale == 0;
+});
+
+const dessert = dummyFoods.filter((val) => {
+  return val.category === "Dessert" && val.sale == 0;
+});
+
+const saleFoods = dummyFoods.filter((val) => {
+  return val.sale > 0;
+});
 
 const Home = () => {
   const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(!open);
   return (
     <Stack width={theme.breakpoints.values.xl} alignItems={"center"}>
       <Stack
@@ -71,7 +92,7 @@ const Home = () => {
         justifyContent={"center"}
         my={15}
       >
-        {controlCardsData.map((a, key) => {
+        {controlCardsData.map((a, index) => {
           return (
             <Stack
               spacing={"15px"}
@@ -81,7 +102,7 @@ const Home = () => {
               borderRadius={4}
               borderColor={"#D6D8DB"}
               boxShadow={3}
-              key={key}
+              key={index}
             >
               <Box>{a.svg}</Box>
               <Stack spacing={1}>
@@ -94,10 +115,10 @@ const Home = () => {
           );
         })}
       </Stack>
-      <SaleCardRow />
-      {menus.map((a, index) => {
-        return <MealCardRow title={a} key={index} />;
-      })}
+      <SaleCardRow bigTitle="Хямдралтай" data={saleFoods} />
+      <SaleCardRow bigTitle={"Үндсэн хоол"} data={main} />
+      <SaleCardRow bigTitle={"Салад ба зууш"} data={salads} />
+      <SaleCardRow bigTitle={"Амттан"} data={dessert} />
     </Stack>
   );
 };

@@ -1,12 +1,24 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
 import SaleCard from "./SaleCard";
 import dummyFoods from "@/dummyFoods.json";
+import React from "react";
 
-const SaleCardRow = () => {
+type food = {
+  id: number;
+  category: string;
+  foodName: string;
+  price: number;
+  imagePath: string;
+  stock: number;
+  sale: number;
+  ingredients: string[];
+}[];
+
+const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
   const theme = useTheme();
-  const data = dummyFoods.filter((val) => {
-    return val.sale > 0;
-  });
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(!open);
 
   return (
     <Stack
@@ -34,7 +46,7 @@ const SaleCardRow = () => {
               fill="#18BA51"
             />
           </svg>
-          <Typography>Хямдралтай</Typography>
+          <Typography>{bigTitle}</Typography>
         </Stack>
         <Stack direction={"row"} spacing={"5px"} alignItems={"center"}>
           <Button>
@@ -63,6 +75,8 @@ const SaleCardRow = () => {
               sale={a.sale}
               price={a.price}
               key={index}
+              open={open}
+              setOpen={setOpen}
             />
           );
         })}

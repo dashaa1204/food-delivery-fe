@@ -1,11 +1,27 @@
-import { Box, Stack, useTheme } from "@mui/material";
+import { Box, Modal, Stack, Typography, useTheme } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useState } from "react";
+import React, { useState } from "react";
 import dummyFoods from "@/dummyFoods.json";
 import dynamic from "next/dynamic";
 
-const MealCard = dynamic(() => import("../component/MealCard"), { ssr: false });
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const SaleCard = dynamic(() => import("../component/SaleCard"), { ssr: false });
+
+const sortedFood = dummyFoods.sort((a, b) => {
+  return b.sale - a.sale;
+});
 
 const CustomTabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -37,23 +53,26 @@ const Menu = () => {
   const theme = useTheme();
   const [value, setValue] = useState<number>(0);
 
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(!open);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const breakfast = dummyFoods.filter((val) => {
+  const breakfast = sortedFood.filter((val) => {
     return val.category === "Breakfast";
   });
 
-  const salads = dummyFoods.filter((val) => {
+  const salads = sortedFood.filter((val) => {
     return val.category === "Salads and Appetizers";
   });
 
-  const main = dummyFoods.filter((val) => {
+  const main = sortedFood.filter((val) => {
     return val.category === "Main Dish";
   });
 
-  const dessert = dummyFoods.filter((val) => {
+  const dessert = sortedFood.filter((val) => {
     return val.category === "Dessert";
   });
 
@@ -79,11 +98,14 @@ const Menu = () => {
             <Stack direction={"row"} flexWrap={"wrap"} width={"1200px"}>
               {breakfast.map((a, index) => {
                 return (
-                  <MealCard
+                  <SaleCard
                     img={a.imagePath}
                     title={a.foodName}
                     price={a.price}
+                    sale={a.sale}
                     key={index}
+                    open={open}
+                    setOpen={setOpen}
                   />
                 );
               })}
@@ -95,11 +117,14 @@ const Menu = () => {
             <Stack direction={"row"} flexWrap={"wrap"} width={"1200px"}>
               {salads.map((a, index) => {
                 return (
-                  <MealCard
+                  <SaleCard
                     img={a.imagePath}
                     title={a.foodName}
                     price={a.price}
+                    sale={a.sale}
                     key={index}
+                    open={open}
+                    setOpen={setOpen}
                   />
                 );
               })}
@@ -111,11 +136,14 @@ const Menu = () => {
             <Stack direction={"row"} flexWrap={"wrap"} width={"1200px"}>
               {main.map((a, index) => {
                 return (
-                  <MealCard
+                  <SaleCard
                     img={a.imagePath}
                     title={a.foodName}
                     price={a.price}
+                    sale={a.sale}
                     key={index}
+                    open={open}
+                    setOpen={setOpen}
                   />
                 );
               })}
@@ -127,11 +155,14 @@ const Menu = () => {
             <Stack direction={"row"} flexWrap={"wrap"} width={"1200px"}>
               {dessert.map((a, index) => {
                 return (
-                  <MealCard
+                  <SaleCard
                     img={a.imagePath}
                     title={a.foodName}
                     price={a.price}
+                    sale={a.sale}
                     key={index}
+                    open={open}
+                    setOpen={setOpen}
                   />
                 );
               })}
@@ -139,6 +170,21 @@ const Menu = () => {
           </Stack>
         </CustomTabPanel>
       </Stack>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
     </Stack>
   );
 };
