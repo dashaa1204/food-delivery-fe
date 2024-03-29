@@ -1,4 +1,4 @@
-import { Stack, Typography, useTheme } from "@mui/material";
+import { Modal, Stack, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
@@ -29,8 +29,7 @@ const saleFoods = dummyFoods.filter((val) => {
 
 const Home = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(!open);
+
   return (
     <Stack width={theme.breakpoints.values.xl} alignItems={"center"}>
       <Stack

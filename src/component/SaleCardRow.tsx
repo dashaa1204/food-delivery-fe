@@ -1,6 +1,5 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
 import SaleCard from "./SaleCard";
-import dummyFoods from "@/dummyFoods.json";
 import React from "react";
 
 type food = {
@@ -18,7 +17,6 @@ const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
   const theme = useTheme();
 
   const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(!open);
 
   return (
     <Stack
@@ -77,6 +75,8 @@ const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
               key={index}
               open={open}
               setOpen={setOpen}
+              index={index}
+              ingredients={a.ingredients}
             />
           );
         })}
