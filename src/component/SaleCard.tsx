@@ -68,7 +68,7 @@ const SaleCard = ({
   return (
     <Stack>
       <Stack
-        spacing={6}
+        gap={6}
         margin={0}
         sx={{ marginLeft: 2 }}
         onClick={() => {
@@ -90,7 +90,7 @@ const SaleCard = ({
               py={1}
               justifyContent={"center"}
               alignItems={"center"}
-              spacing={2}
+              gap={2}
               border={1}
               borderColor={"white"}
               bgcolor={"#18BA51"}
@@ -106,11 +106,11 @@ const SaleCard = ({
           )}
         </Stack>
 
-        <Stack width={"282px"} spacing={"2px"}>
+        <Stack width={"282px"} gap={"2px"}>
           <Typography fontSize={"18px"} fontWeight={600}>
             {title}
           </Typography>
-          <Stack direction={"row"} spacing={2}>
+          <Stack direction={"row"} gap={2}>
             <TextField
               value={values.numberformat}
               onChange={handleChange}

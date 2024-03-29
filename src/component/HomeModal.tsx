@@ -5,9 +5,11 @@ import {
   Stack,
   TextField,
   Typography,
+  colors,
 } from "@mui/material";
 import React, { useState } from "react";
-import AddSubModal from "./addSubModal";
+import AddSubModal from "./AddSubModal";
+import Close from "./icons/Close";
 
 export const modalStyle = {
   position: "absolute" as "absolute",
@@ -42,12 +44,17 @@ const HomeModal = ({
   ingredients: string[];
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const closeType = {
+    position: "absolute",
+    top: "32px",
+    left: "925px",
+  };
   return (
     <Modal open={open} onClose={handleClose}>
       <Stack sx={modalStyle}>
         <Stack
-          p={8}
-          spacing={"33px"}
+          p={"32px"}
+          gap={"32px"}
           alignItems={"center"}
           direction={"row"}
           borderRadius={4}
@@ -58,33 +65,17 @@ const HomeModal = ({
             src={img}
             width={"500px"}
             height={"500px"}
-            borderRadius={"16px"}
+            sx={{ objectFit: "cover" }}
           ></Box>
-          <Stack spacing={8}>
-            <Stack spacing={"2px"} width={"282px"}>
-              <Typography fontSize={"28px"} fontWeight={700}>
-                {title}
-              </Typography>
-              <Stack direction={"row"} spacing={2} alignItems={"baseline"}>
-                <TextField
-                  value={values.numberformat}
-                  onChange={handleChange}
-                  name="numberformat"
-                  id="formatted-numberformat-input"
-                  InputProps={{
-                    inputComponent: NumericFormatCustom as any,
-                    disableUnderline: true,
-                    style: {
-                      color: "#18BA51",
-                      fontSize: "18px",
-                      fontWeight: 600,
-                    },
-                  }}
-                  variant="standard"
-                />
-                {sale > 0 && (
+          <Stack gap={8} width={"384px"}>
+            <Stack gap={"32px"} justifyContent={"center"}>
+              <Stack gap={"2px"} width={"282px"}>
+                <Typography fontSize={"28px"} fontWeight={700}>
+                  {title}
+                </Typography>
+                <Stack direction={"row"} gap={2} alignItems={"baseline"}>
                   <TextField
-                    value={mainValues.numberformat}
+                    value={values.numberformat}
                     onChange={handleChange}
                     name="numberformat"
                     id="formatted-numberformat-input"
@@ -92,21 +83,39 @@ const HomeModal = ({
                       inputComponent: NumericFormatCustom as any,
                       disableUnderline: true,
                       style: {
+                        color: "#18BA51",
                         fontSize: "18px",
-                        fontWeight: 400,
-                        textDecoration: "line-through",
+                        fontWeight: 600,
                       },
                     }}
                     variant="standard"
                   />
-                )}
+                  {sale > 0 && (
+                    <TextField
+                      value={mainValues.numberformat}
+                      onChange={handleChange}
+                      name="numberformat"
+                      id="formatted-numberformat-input"
+                      InputProps={{
+                        inputComponent: NumericFormatCustom as any,
+                        disableUnderline: true,
+                        style: {
+                          fontSize: "18px",
+                          fontWeight: 400,
+                          textDecoration: "line-through",
+                        },
+                      }}
+                      variant="standard"
+                    />
+                  )}
+                </Stack>
               </Stack>
-              <Stack spacing={3}>
+              <Stack gap={3}>
                 <Typography>Орц</Typography>
                 <Stack
                   p={"8px"}
                   direction="row"
-                  spacing={1}
+                  gap={1}
                   alignItems={"center"}
                   display={"flow"}
                 >
@@ -128,7 +137,29 @@ const HomeModal = ({
               </Stack>
               <Typography>Тоо</Typography>
               <AddSubModal quantity={quantity} setQuantity={setQuantity} />
-              <Button sx={{ width: "384px" }}>Сагслах</Button>
+              <Button
+                sx={{
+                  width: "384px",
+                  backgroundColor: "#18BA51",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "white",
+                    color: "#18BA51",
+                  },
+                }}
+              >
+                Сагслах
+              </Button>
+              <Stack
+                position={"absolute"}
+                top={"30px"}
+                left={"927px"}
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                <Close />
+              </Stack>
             </Stack>
           </Stack>
         </Stack>

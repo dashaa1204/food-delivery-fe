@@ -46,7 +46,7 @@ const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
           </svg>
           <Typography>{bigTitle}</Typography>
         </Stack>
-        <Stack direction={"row"} spacing={"5px"} alignItems={"center"}>
+        <Stack direction={"row"} gap={"5px"} alignItems={"center"}>
           <Button>
             <Typography textTransform={"none"}>Бүгдийг харах</Typography>
             <svg
@@ -64,7 +64,7 @@ const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
           </Button>
         </Stack>
       </Stack>
-      <Stack spacing={3} direction={"row"}>
+      <Stack gap={"12px"} direction={"row"}>
         {data.slice(0, 4).map((a, index) => {
           return (
             <SaleCard

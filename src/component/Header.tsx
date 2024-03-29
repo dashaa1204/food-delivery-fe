@@ -1,13 +1,33 @@
-import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Backdrop,
+  Box,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import Container from "@mui/material/Container";
 import MainLogo from "./icons/MainLogo";
 import SearchIcon from "./icons/SearchIcon";
 import CartIcon from "./icons/CartIcon";
 import SigninIcon from "./icons/SigninIcon";
+import React from "react";
+import CartBackDrop from "./CartBackDrop";
 
-const pages = ["НҮҮР", "ХООЛНЫ ЦЭС", "ХҮРГЭЛТИЙН БҮС"];
+const pages = [
+  { title: "НҮҮР", page: "./" },
+  { title: "ХООЛНЫ ЦЭС", page: "./menu" },
+  { title: "ХҮРГЭЛТИЙН БҮС", page: "./menu" },
+];
 
 const Header = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
   return (
     <AppBar sx={{ bgcolor: "white", boxShadow: "none" }}>
       <Container maxWidth={"xl"}>
@@ -19,11 +39,32 @@ const Header = () => {
           width={"100%"}
         >
           <Toolbar>
-            <Stack direction={"row"} spacing={4}>
-              <MainLogo />
-              <Stack direction={"row"} spacing={4}>
+            <Stack direction={"row"} gap={4}>
+              <Box
+                component={"button"}
+                border={"none"}
+                bgcolor={"white"}
+                onClick={() => {
+                  window.location.href = "./";
+                }}
+              >
+                <MainLogo />
+              </Box>
+              <Stack direction={"row"} gap={4}>
                 {pages.map((a, key) => {
-                  return <Box key={key}>{a}</Box>;
+                  return (
+                    <Box
+                      component={"button"}
+                      border={"none"}
+                      bgcolor={"white"}
+                      key={key}
+                      onClick={() => {
+                        window.location.href = a.page;
+                      }}
+                    >
+                      {a.title}
+                    </Box>
+                  );
                 })}
               </Stack>
             </Stack>
@@ -59,6 +100,7 @@ const Header = () => {
               <Typography>Нэвтрэх</Typography>
             </Stack>
           </Stack>
+          {/* <CartBackDrop /> */}
         </Stack>
       </Container>
     </AppBar>

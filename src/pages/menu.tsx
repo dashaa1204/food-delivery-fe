@@ -103,9 +103,11 @@ const Menu = () => {
                     title={a.foodName}
                     price={a.price}
                     sale={a.sale}
+                    ingredients={a.ingredients}
                     key={index}
                     open={open}
                     setOpen={setOpen}
+                    index={index}
                   />
                 );
               })}
@@ -122,9 +124,11 @@ const Menu = () => {
                     title={a.foodName}
                     price={a.price}
                     sale={a.sale}
+                    ingredients={a.ingredients}
                     key={index}
                     open={open}
                     setOpen={setOpen}
+                    index={index}
                   />
                 );
               })}
@@ -141,9 +145,11 @@ const Menu = () => {
                     title={a.foodName}
                     price={a.price}
                     sale={a.sale}
+                    ingredients={a.ingredients}
                     key={index}
                     open={open}
                     setOpen={setOpen}
+                    index={index}
                   />
                 );
               })}
@@ -160,9 +166,11 @@ const Menu = () => {
                     title={a.foodName}
                     price={a.price}
                     sale={a.sale}
+                    ingredients={a.ingredients}
                     key={index}
                     open={open}
                     setOpen={setOpen}
+                    index={index}
                   />
                 );
               })}

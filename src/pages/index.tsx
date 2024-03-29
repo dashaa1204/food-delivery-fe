@@ -1,4 +1,4 @@
-import { Modal, Stack, Typography, useTheme } from "@mui/material";
+import { Backdrop, Modal, Stack, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
@@ -41,7 +41,7 @@ const Home = () => {
         alignItems={"center"}
         justifyContent={"space-around"}
         overflow={"hidden"}
-        spacing={10}
+        gap={10}
       >
         <Box position={"absolute"}>
           <Pattern />
@@ -86,7 +86,7 @@ const Home = () => {
       </Stack>
       <Stack
         width={theme.breakpoints.values.lg}
-        spacing={"47px"}
+        gap={"47px"}
         direction={"row"}
         justifyContent={"center"}
         my={15}
@@ -94,7 +94,7 @@ const Home = () => {
         {controlCardsData.map((a, index) => {
           return (
             <Stack
-              spacing={"15px"}
+              gap={"15px"}
               justifyContent={"center"}
               p={4}
               border={1}
@@ -104,10 +104,11 @@ const Home = () => {
               key={index}
             >
               <Box>{a.svg}</Box>
-              <Stack spacing={1}>
-                <Typography fontSize={"18px"} fontWeight={"700"}>
+              <Stack gap={1}>
+                <Box fontSize={"18px"} fontWeight={"700"}>
                   {a.title}
-                </Typography>
+                </Box>
+
                 <Typography fontSize={"14px"}>{a.detail}</Typography>
               </Stack>
             </Stack>
