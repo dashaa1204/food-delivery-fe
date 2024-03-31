@@ -1,7 +1,10 @@
+import dynamic from "next/dynamic";
 import {
   AppBar,
   Backdrop,
   Box,
+  Button,
+  CircularProgress,
   Stack,
   Toolbar,
   Typography,
@@ -12,7 +15,9 @@ import SearchIcon from "./icons/SearchIcon";
 import CartIcon from "./icons/CartIcon";
 import SigninIcon from "./icons/SigninIcon";
 import React from "react";
-import CartBackDrop from "./CartBackDrop";
+const CartBackDrop = dynamic(() => import("../component/CartBackDrop"), {
+  ssr: false,
+});
 
 const pages = [
   { title: "НҮҮР", page: "./" },
@@ -91,7 +96,16 @@ const Header = () => {
               <SearchIcon />
               <Box border={"none"} component={"input"} placeholder="Хайх"></Box>
             </Stack>
-            <Stack direction={"row"} alignItems={"center"} px={2} gap={1}>
+            <Stack
+              component={"button"}
+              direction={"row"}
+              alignItems={"center"}
+              px={2}
+              gap={1}
+              border={"none"}
+              bgcolor={"#fff"}
+              onClick={handleOpen}
+            >
               <CartIcon />
               <Typography>Сагс</Typography>
             </Stack>
@@ -100,7 +114,14 @@ const Header = () => {
               <Typography>Нэвтрэх</Typography>
             </Stack>
           </Stack>
-          {/* <CartBackDrop /> */}
+          <Backdrop
+            sx={{
+              justifyContent: "flex-end",
+            }}
+            open={open}
+          >
+            <CartBackDrop handleClose={handleClose} />
+          </Backdrop>
         </Stack>
       </Container>
     </AppBar>

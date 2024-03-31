@@ -1,4 +1,4 @@
-import { Backdrop, Modal, Stack, Typography, useTheme } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Pattern from "../component/icons/Pattern";
 import Image from "next/image";
@@ -116,9 +116,9 @@ const Home = () => {
         })}
       </Stack>
       <SaleCardRow bigTitle="Хямдралтай" data={saleFoods} />
-      <SaleCardRow bigTitle={"Үндсэн хоол"} data={main} />
-      <SaleCardRow bigTitle={"Салад ба зууш"} data={salads} />
-      <SaleCardRow bigTitle={"Амттан"} data={dessert} />
+      <SaleCardRow bigTitle="Үндсэн хоол" data={main} />
+      <SaleCardRow bigTitle="Салад ба зууш" data={salads} />
+      <SaleCardRow bigTitle="Амттан" data={dessert} />
     </Stack>
   );
 };
