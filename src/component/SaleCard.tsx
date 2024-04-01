@@ -3,6 +3,17 @@ import React, { useState, Dispatch } from "react";
 import { NumericFormat, NumericFormatProps } from "react-number-format";
 import HomeModal from "./HomeModal";
 
+type dataType = {
+  id: number;
+  foodName: string;
+  imagePath: string;
+  price: number;
+  sale: number;
+  stock: number;
+  ingredients: string[];
+  category: string;
+};
+
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
@@ -31,27 +42,18 @@ const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
 );
 
 const SaleCard = ({
-  img,
-  title,
-  price,
-  sale,
-  index,
-  ingredients,
+  data,
 }: {
-  img: string;
-  title: string;
-  price: number;
-  sale: number;
+  data: dataType;
+  index: number;
   open: boolean;
-  ingredients: string[];
   setOpen: Dispatch<boolean>;
-  index: number | undefined;
 }) => {
   const [values, setValues] = useState({
-    numberformat: price - (sale * price) / 100,
+    numberformat: data.price - (data.sale * data.price) / 100,
   });
   const [mainValues] = useState({
-    numberformat: price,
+    numberformat: data.price,
   });
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -63,8 +65,6 @@ const SaleCard = ({
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(!open);
 
-  const [selected, setSelected] = useState<number>();
-
   return (
     <Stack>
       <Stack
@@ -73,18 +73,17 @@ const SaleCard = ({
         sx={{ marginLeft: 2 }}
         onClick={() => {
           setOpen(!open);
-          setSelected(index);
         }}
       >
         <Stack position={"relative"}>
           <Box
             component={"img"}
-            src={img}
+            src={data.imagePath}
             width={"282px"}
             height={"186px"}
             borderRadius={"16px"}
           ></Box>
-          {sale > 0 && (
+          {data.sale > 0 && (
             <Stack
               px={4}
               py={1}
@@ -100,7 +99,7 @@ const SaleCard = ({
               right={10}
             >
               <Typography fontSize={"18px"} fontWeight={"600"} color={"white"}>
-                {sale}%
+                {data.sale}%
               </Typography>
             </Stack>
           )}
@@ -108,7 +107,7 @@ const SaleCard = ({
 
         <Stack width={"282px"} gap={"2px"}>
           <Typography fontSize={"18px"} fontWeight={600}>
-            {title}
+            {data.foodName}
           </Typography>
           <Stack direction={"row"} gap={2}>
             <TextField
@@ -123,7 +122,7 @@ const SaleCard = ({
               }}
               variant="standard"
             />
-            {sale > 0 && (
+            {data.sale > 0 && (
               <TextField
                 value={mainValues.numberformat}
                 onChange={handleChange}
@@ -145,17 +144,14 @@ const SaleCard = ({
         </Stack>
       </Stack>
       <HomeModal
-        handleClose={handleClose}
         open={open}
-        img={img}
-        title={title}
-        sale={sale}
+        handleClose={handleClose}
+        data={data}
         values={values}
         mainValues={mainValues}
         numberformat={NumericFormat}
         handlechange={handleChange}
         NumericFormatCustom={NumericFormatCustom}
-        ingredients={ingredients}
       />
     </Stack>
   );

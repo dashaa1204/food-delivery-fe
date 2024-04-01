@@ -2,18 +2,24 @@ import { Button, Stack, Typography, useTheme } from "@mui/material";
 import SaleCard from "./SaleCard";
 import React from "react";
 
-type food = {
+type dataType = {
   id: number;
-  category: string;
   foodName: string;
-  price: number;
   imagePath: string;
-  stock: number;
+  price: number;
   sale: number;
+  stock: number;
   ingredients: string[];
+  category: string;
 }[];
 
-const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
+const SaleCardRow = ({
+  data,
+  bigTitle,
+}: {
+  data: dataType;
+  bigTitle: string;
+}) => {
   const theme = useTheme();
 
   const [open, setOpen] = React.useState(false);
@@ -68,15 +74,11 @@ const SaleCardRow = ({ data, bigTitle }: { data: food; bigTitle: string }) => {
         {data.slice(0, 4).map((a, index) => {
           return (
             <SaleCard
-              img={a.imagePath}
-              title={a.foodName}
-              sale={a.sale}
-              price={a.price}
+              data={a}
               key={index}
               open={open}
               setOpen={setOpen}
               index={index}
-              ingredients={a.ingredients}
             />
           );
         })}

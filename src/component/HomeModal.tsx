@@ -17,31 +17,35 @@ export const modalStyle = {
   left: "50%",
   transform: "translate(-50%, -50%)",
 };
+type dataType = {
+  id: number;
+  foodName: string;
+  imagePath: string;
+  price: number;
+  sale: number;
+  stock: number;
+  ingredients: string[];
+  category: string;
+};
 
 const HomeModal = ({
   handleClose,
   open,
-  img,
-  title,
-  sale,
+  data,
   values,
   mainValues,
   handleChange,
   NumericFormatCustom,
   numberformat,
-  ingredients,
 }: {
   handleClose: () => void;
   open: boolean;
-  img: string;
-  title: string;
-  sale: number;
+  data: dataType;
   values: number;
   mainValues: number;
   handleChange: () => void;
-  NumericFormatCustom: () => void;
+  NumericFormatCustom: (value: number) => string;
   numberformat: number;
-  ingredients: string[];
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const closeType = {
@@ -62,7 +66,7 @@ const HomeModal = ({
         >
           <Box
             component={"img"}
-            src={img}
+            src={data.imagePath}
             width={"500px"}
             height={"500px"}
             sx={{ objectFit: "cover" }}
@@ -71,7 +75,7 @@ const HomeModal = ({
             <Stack gap={"32px"} justifyContent={"center"}>
               <Stack gap={"2px"} width={"282px"}>
                 <Typography fontSize={"28px"} fontWeight={700}>
-                  {title}
+                  {data.foodName}
                 </Typography>
                 <Stack direction={"row"} gap={2} alignItems={"baseline"}>
                   <TextField
@@ -90,7 +94,7 @@ const HomeModal = ({
                     }}
                     variant="standard"
                   />
-                  {sale > 0 && (
+                  {data.sale > 0 && (
                     <TextField
                       value={mainValues.numberformat}
                       onChange={handleChange}
@@ -119,7 +123,7 @@ const HomeModal = ({
                   alignItems={"center"}
                   display={"flow"}
                 >
-                  {ingredients.map((a, index) => {
+                  {data.ingredients.map((a, index) => {
                     return (
                       <Typography
                         key={index}

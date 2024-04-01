@@ -1,5 +1,3 @@
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-
 export const controlCardsData = [
   {
     svg: "svg",

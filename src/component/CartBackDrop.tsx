@@ -1,24 +1,34 @@
-import { Backdrop, CircularProgress } from "@mui/material";
-import React from "react";
+import { ArrowForward } from "@mui/icons-material";
+import { Stack, Typography } from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import HomeModal from "./HomeModal";
+import cartFood from "@/cartFoods.json";
 
-const CartBackDrop = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
+const CartBackDrop = ({ handleClose }: { handleClose: () => void }) => {
   return (
-    <div>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}
+    <Stack width={"586px"} bgcolor={"white"} height={"1439px"} px={"24px"}>
+      <Stack
+        mt={40}
+        color={"black"}
+        width={"538px"}
+        gap={"171px"}
+        direction={"row"}
       >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+        <Stack
+          width={"48px"}
+          height={"48px"}
+          p={"2px, 6px"}
+          justifyContent={"center"}
+          component={"button"}
+          onClick={handleClose}
+          sx={{ backgroundColor: "white", border: "none" }}
+        >
+          <ArrowBackIosNewIcon />
+        </Stack>
+        <Typography>Таны сагс</Typography>
+      </Stack>
+      {/* <HomeModal /> */}
+    </Stack>
   );
 };
 

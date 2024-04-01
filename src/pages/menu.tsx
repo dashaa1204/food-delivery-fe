@@ -99,11 +99,7 @@ const Menu = () => {
               {breakfast.map((a, index) => {
                 return (
                   <SaleCard
-                    img={a.imagePath}
-                    title={a.foodName}
-                    price={a.price}
-                    sale={a.sale}
-                    ingredients={a.ingredients}
+                    data={a}
                     key={index}
                     open={open}
                     setOpen={setOpen}
@@ -120,11 +116,7 @@ const Menu = () => {
               {salads.map((a, index) => {
                 return (
                   <SaleCard
-                    img={a.imagePath}
-                    title={a.foodName}
-                    price={a.price}
-                    sale={a.sale}
-                    ingredients={a.ingredients}
+                    data={a}
                     key={index}
                     open={open}
                     setOpen={setOpen}
@@ -141,11 +133,7 @@ const Menu = () => {
               {main.map((a, index) => {
                 return (
                   <SaleCard
-                    img={a.imagePath}
-                    title={a.foodName}
-                    price={a.price}
-                    sale={a.sale}
-                    ingredients={a.ingredients}
+                    data={a}
                     key={index}
                     open={open}
                     setOpen={setOpen}
@@ -162,11 +150,7 @@ const Menu = () => {
               {dessert.map((a, index) => {
                 return (
                   <SaleCard
-                    img={a.imagePath}
-                    title={a.foodName}
-                    price={a.price}
-                    sale={a.sale}
-                    ingredients={a.ingredients}
+                    data={a}
                     key={index}
                     open={open}
                     setOpen={setOpen}
