@@ -2,7 +2,7 @@ import { ArrowForward } from "@mui/icons-material";
 import { Stack, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import HomeModal from "./HomeModal";
-import cartFood from "@/cartFoods.json";
+import cartFood from "@/utils/cart-foods";
 
 const CartBackDrop = ({ handleClose }: { handleClose: () => void }) => {
   return (
