@@ -42,8 +42,12 @@ const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
 );
 
 const SaleCard = ({
-  data,
+  img,
+  title,
+  price,
+  sale,
   index,
+  ingredients,
 }: {
   data: dataType;
   index: number;
@@ -66,8 +70,6 @@ const SaleCard = ({
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(!open);
 
-  const [selected, setSelected] = useState<number>();
-
   return (
     <Stack>
       <Stack
@@ -76,7 +78,6 @@ const SaleCard = ({
         sx={{ marginLeft: 2 }}
         onClick={() => {
           setOpen(!open);
-          setSelected(index);
         }}
       >
         <Stack position={"relative"}>
@@ -148,6 +149,7 @@ const SaleCard = ({
         </Stack>
       </Stack>
       <HomeModal
+        open={open}
         handleClose={handleClose}
         data={data}
         values={values}

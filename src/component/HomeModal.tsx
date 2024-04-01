@@ -123,7 +123,7 @@ const HomeModal = ({
                   alignItems={"center"}
                   display={"flow"}
                 >
-                  {/* {data.ingredients.map((a, index) => {
+                  {data.ingredients.map((a, index) => {
                     return (
                       <Typography
                         key={index}
